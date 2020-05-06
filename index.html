@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+   
+    <script>
+        AFRAME.registerComponent('toggle-play-on-window-click', {
+            schema: {
+                video: {type: 'selector'},
+            },
+            init: function () {
+                this.video = this.data.video
+                this.video.pause()
+                this.onClick = this.onClick.bind(this);
+            },
+            play: function () {
+                window.addEventListener('click', this.onClick);
+            },
+            pause: function () {
+                window.removeEventListener('click', this.onClick);
+            },
+            onClick: function (evt) {
+                this.video = this.data.video
+                if (!this.video) { return; }
+                this.video.paused ? this.video.play() : this.video.pause();
+            },
+            tick: function () {
+                if (this.el.object3D.visible == true) {
+                    if (!this.toggle) {
+                        this.toggle = true;
+                        this.video.play()
+                    }
+                } else {
+                    this.toggle = false;
+                    this.video.pause()
+                }
+            }
+        });
+
+        AFRAME.registerComponent('play-on-window-click', {
+            schema: {
+                video: {type: 'selector'},
+            },
+            init: function () {
+                this.video = this.data.video
+                this.onClick = this.onClick.bind(this);
+            },
+            play: function () {
+                window.addEventListener('click', this.onClick);
+            },
+            pause: function () {
+                window.removeEventListener('click', this.onClick);
+            },
+            onClick: function (evt) {
+                this.video = this.data.video
+                if (!this.video) { return; }
+                this.video.play();
+            },
+            tick: function () {
+                this.video = this.data.video
+                if (this.el.object3D.visible == true) {
+                    if (this.video.paused) {
+                        this.video.play()
+                    }
+                } else {
+                    this.video.pause()
+                }
+            }
+        });
+       
+    </script>
+</head>
+
+<body>
+
+    <a-scene embedded arjs='sourceType: webcam;detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
+
+        <a-assets>
+            <!-- <video id="jonathan" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/jonathan.mp4"></video> -->
+
+            <video id="cc-fam" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/cc-fam.mp4"></video>
+
+            <video id="wilbert-yolly" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/wilbert-yolly.mp4"></video>
+
+            <video id="katheryn-daniel" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/katheryn-daniel.mp4"></video>
+                
+            <video id="dory" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/dory.mp4"></video>
+            
+            <video id="nastassja-aj" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/nastassja-aj.mp4"></video>
+                
+            <video id="julienne" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/julienne.mp4"></video>
+                
+            <video id="alexa-sal-madonna" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/alexa-sal-madonna.mp4"></video>
+
+            <video id="kirstine" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/kirstine.mp4"></video>
+
+            <video id="manuela-1" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/manuela-1.mp4"></video>
+
+            <video id="manuela-2" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/manuela-2.mp4"></video>
+
+            <video id="ian-kaycee" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/ian-kaycee.mp4"></video>
+
+            <video id="cesar-christina" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/cesar-christina.mp4"></video>
+
+            <video id="philip" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/philip.mp4"></video>
+
+            <video id="alex-michelle" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/alex-michelle.mp4"></video>
+
+            <video id="mindy" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/mindy.mp4"></video>
+
+            <video id="kristine" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/kristine.mp4"></video>
+
+            <video id="kit-mike-1" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/kit-mike-1.mp4"></video>
+
+            <video id="kit-mike-2" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/kit-mike-2.mp4"></video>
+
+            <video id="steven" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/steven.mp4"></video>
+
+            <video id="francis-alyssa" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/francis-alyssa.mp4"></video>
+
+            <video id="jerel-grace" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/jerel-grace.mp4"></video>
+
+            <video id="ajay-chaavi" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/ajay-chaavi.mp4"></video>
+
+            <video id="kathleen" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/kathleen.mp4"></video>
+
+            <video id="jonathan-johanna" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/jonathan-johanna.mp4"></video>
+
+            <video id="annabelle" crossorigin autoplay webkit-playsinline playsinline loop="true" type="video/mp4"
+                src="https://jmadev.github.io/birthday/videos/annabelle.mp4"></video>
+
+            
+        </a-assets>
+
+        <a-entity camera></a-entity>
+
+       
+        <!-- <a-marker play-on-window-click="video: #jonathan" type="barcode" value="1">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#jonathan" scale="3 3 3" width="3" height="1.5"></a-video>            
+        </a-marker> -->
+
+        <a-marker play-on-window-click="video: #cc-fam" type="barcode" value="2">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#cc-fam" scale="3 3 3" width="3" height="1.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #wilbert-yolly" type="barcode" value="3">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#wilbert-yolly" scale="3 3 3" width="3" height="1.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #katheryn-daniel" type="barcode" value="4">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#katheryn-daniel" scale="2 2 2" width="3" height="4.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #dory" type="barcode" value="5">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#dory" scale="2 2 2" width="3" height="4.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #nastassja-aj" type="barcode" value="6">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#nastassja-aj" scale="2 2 2" width="3" height="4.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #julienne" type="barcode" value="7">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#julienne" scale="2 2 2" width="3" height="4.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #alexa-sal-madonna" type="barcode" value="8">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#alexa-sal-madonna" scale="3 3 3" width="3" height="1.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #kirstine" type="barcode" value="9">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#kirstine" scale="2 2 2" width="3" height="4.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #manuela-1" type="barcode" value="10">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#manuela-1" scale="2 2 2" width="3" height="4.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #manuela-2" type="barcode" value="11">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#manuela-2" scale="2 2 2" width="3" height="4.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #ian-kaycee" type="barcode" value="12">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#ian-kaycee" scale="3 3 3" width="3" height="1.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #cesar-christina" type="barcode" value="13">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#cesar-christina" scale="2 2 2" width="3" height="4.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #philip" type="barcode" value="14">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#philip" scale="2 2 2" width="3" height="4.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #alex-michelle" type="barcode" value="15">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#alex-michelle" scale="3 3 3" width="3" height="1.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #mindy" type="barcode" value="16">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#mindy" scale="3 3 3" width="3" height="1.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #kristine" type="barcode" value="17">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#kristine" scale="2 2 2" width="3" height="4.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #kit-mike-1" type="barcode" value="18">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#kit-mike-1" scale="3 3 3" width="3" height="1.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #kit-mike-2" type="barcode" value="19">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#kit-mike-2" scale="3 3 3" width="3" height="1.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #steven" type="barcode" value="20">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#steven" scale="3 3 3" width="3" height="1.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #francis-alyssa" type="barcode" value="21">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#francis-alyssa" scale="3 3 3" width="3" height="1.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #jerel-grace" type="barcode" value="22">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#jerel-grace" scale="3 3 3" width="3" height="1.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #ajay-chaavi" type="barcode" value="23">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#ajay-chaavi" scale="3 3 3" width="3" height="1.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #kathleen" type="barcode" value="24">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#kathleen" scale="3 3 3" width="3" height="1.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #jonathan-johanna" type="barcode" value="25">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#jonathan-johanna" scale="3 3 3" width="3" height="1.5"></a-video>            
+        </a-marker>
+
+        <a-marker play-on-window-click="video: #annabelle" type="barcode" value="26">
+            <a-video rotation="-90 0 0" position="0 -0.50 0" src="#annabelle" scale="2 2 2" width="3" height="4.5"></a-video>            
+        </a-marker>
+
+</body>
+</html>
